@@ -51,3 +51,38 @@ def check_available(task, node):
         if task.ri[q] + node.Ri[q] > node.Ci[q]:
             return False
     return True
+
+
+def get_load_percentage(nodes):
+    n_sum = 0
+    for node in nodes:
+        q_sum = 0
+        for q in node.Ri.keys():
+            q_sum += node.Ri[q] / node.Ci[q]
+        q_sum /= 4
+        n_sum += q_sum
+    return n_sum / len(nodes)
+
+
+def get_balance_percentage(nodes):
+    n_sum = 0
+    for node in nodes:
+        q_max = 0
+        q_min = 20
+        for q in node.Ri.keys():
+            rate = node.Ri[q] / node.Ci[q]
+            if rate > q_max:
+                q_max = rate
+            if rate < q_min:
+                q_min = rate
+        n_sum += abs(q_max - q_min)
+    return n_sum / len(nodes)
+
+
+def get_tix(task, node):
+    tcom = task.CC / (task.ri['cpu'] * node.Freq / (task.ri['cpu'] + node.Ri['cpu']))
+    ttrans = (task.DI + task.DO) * (node.Ri['bandwidth'] + task.ri['bandwidth'])  / \
+             (task.ri['bandwidth'] * node.bandwidth) + 2 * task.nodes_delay[
+                 node.name]
+    tix = ttrans + tcom
+    return tix

@@ -1,3 +1,5 @@
 venv/
 .idea/
 src/__pycache__/
+*.eps
+*.svg

@@ -25,10 +25,10 @@ class Task:
                 if node == "central_cloud":
                     self.nodes_delay[node] = int(get_normal_random(mu=250, sigma=64))
                 else:
-                    self.nodes_delay[node] = int(get_normal_random(mu=100, sigma=16))
+                    self.nodes_delay[node] = int(get_normal_random(mu=25, sigma=4))
             else:
-                self.nodes_delay[node] = int(get_normal_random(mu=50, sigma=8))
-        self.CC = int(get_normal_random(mu=100, sigma=16))
+                self.nodes_delay[node] = int(get_normal_random(mu=5, sigma=1))
+        self.CC = int(get_normal_random(mu=500, sigma=64))
         self.delta = 2000
         self.bi = 0
 
@@ -120,7 +120,7 @@ class ConnectedGraph:
                 self.links[node.name] = list()
             for node in nodes:
                 # each node connect not more than nodes_len / 3 nodes
-                connected_times = np.random.randint(1, nodes_len / 2)
+                connected_times = np.random.randint(1, nodes_len / 3)
                 # check if node is not connected or over connected
                 if len(self.links[node.name]) < connected_times:
                     while len(self.links[node.name]) < connected_times:
@@ -133,7 +133,7 @@ class ConnectedGraph:
     def check_node_in_link(cls, node, check_name):
         flag = False
         for n in cls._instance.links[node.name]:
-            if n.name == check_name:
+            if n == check_name:
                 flag = True
         return flag
 
