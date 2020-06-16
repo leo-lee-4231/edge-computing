@@ -19,7 +19,7 @@ time_slots = 500
 phi1 = 1
 phi2 = 1
 # create nodes
-nodes_num = 200
+nodes_num = 50
 nodes = [Node(name=str(i)) for i in range(nodes_num)]
 print(nodes)
 game_nodes = [Node(name=str(i)) for i in range(nodes_num)]
@@ -422,26 +422,26 @@ def main():
         greedy_balance_count.append(get_balance_percentage(greedy_nodes))
         usage_balance_count.append(get_balance_percentage(usage_nodes))
 
-    # cal qos average rate
-    print("qos average of game: ", game_qos_count[-1])
-    print("qos average of random: ", random_qos_count[-1])
-    greedy_qos_count.append(1 - (len(greedy_total_qos) + get_normal_random(time_slots, time_slots / 5)) / task_count[-1])
-    print("qos average of greedy: ", greedy_qos_count[-1])
-    print("qos average of LUF: ", usage_qos_count[-1])
+    # # cal qos average rate
+    # print("qos average of game: ", game_qos_count[-1])
+    # print("qos average of random: ", random_qos_count[-1])
+    # greedy_qos_count.append(1 - (len(greedy_total_qos) + get_normal_random(time_slots, time_slots / 5)) / task_count[-1])
+    # print("qos average of greedy: ", greedy_qos_count[-1])
+    # print("qos average of LUF: ", usage_qos_count[-1])
+    #
+    # # cal utilization average rate
+    # print("utilization average of game: ", mean(game_load_count))
+    # print("utilization average of random: ", mean(random_load_count))
+    # print("utilization average of greedy: ", mean(greedy_load_count))
+    # print("utilization average of LUF: ", mean(usage_load_count))
+    #
+    # # cal allocation distribution
+    # print('allocation distribution of game:', game_choose_count)
+    # print('allocation distribution of random:', random_choose_count)
+    # print('allocation distribution of greedy:', greedy_choose_count)
+    # print('allocation distribution of LUF:', usage_choose_count)
 
-    # cal utilization average rate
-    print("utilization average of game: ", mean(game_load_count))
-    print("utilization average of random: ", mean(random_load_count))
-    print("utilization average of greedy: ", mean(greedy_load_count))
-    print("utilization average of LUF: ", mean(usage_load_count))
 
-    # cal allocation distribution
-    print('allocation distribution of game:', game_choose_count)
-    print('allocation distribution of random:', random_choose_count)
-    print('allocation distribution of greedy:', greedy_choose_count)
-    print('allocation distribution of LUF:', usage_choose_count)
-
-    """
     # draw chart
     x = [i for i in range(time_slots)]
     plt.subplot(2, 2, 1)
@@ -501,6 +501,5 @@ def main():
 
     plt.grid()
     plt.show()
-    """
 
 main()

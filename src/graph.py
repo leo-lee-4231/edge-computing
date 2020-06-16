@@ -21,7 +21,7 @@ usage_qos = [0.912429668, 0.903227441, 0.898739708, 0.895798235, 0.892920318,
 fig, ax = plt.subplots()
 plt.xlabel('Number of MEC servers')
 plt.ylabel('Average delay guarantee percentage (%)')
-plt.plot(x, [i * 100 for i in game_qos], 'tomato', label='GOTA', marker='*')
+plt.plot(x, [i * 100 for i in game_qos], 'tomato', label='GTOA', marker='*')
 plt.plot(x, [i * 100 for i in random_qos], 'orange', label='Random', marker='o', ls='--')
 plt.plot(x, [i * 100 for i in greedy_qos], 'c', label='Delay optimal', marker='+', ls='-.')
 plt.plot(x, [i * 100 for i in usage_qos], 'limegreen', label='RUF', marker='v', ls=':')
@@ -41,7 +41,7 @@ usage_usage = [0.503736578, 0.50632461, 0.507952367, 0.508915537, 0.511103971,
 fig, ax = plt.subplots()
 plt.xlabel('Number of MEC servers')
 plt.ylabel('Average resource utilization rate of system (%)')
-plt.plot(x, [i * 100 for i in game_usage], 'tomato', label='GOTA', marker='*')
+plt.plot(x, [i * 100 for i in game_usage], 'tomato', label='GTOA', marker='*')
 plt.plot(x, [i * 100 for i in random_usage], 'orange', label='Random', marker='o', ls='--')
 plt.plot(x, [i * 100 for i in greedy_usage], 'c', label='Delay optimal', marker='+', ls='-.')
 plt.plot(x, [i * 100 for i in usage_usage], 'limegreen', label='RUF', marker='v', ls=':')
@@ -157,7 +157,7 @@ total_width, n = 0.8, 4
 width = total_width / n
 plt.xlabel('Task allocation strategy')
 plt.ylabel('Task allocation statistics')
-plt.bar(bar_x, game_count, fc='silver', width=width, label='GOTA', ec='k')
+plt.bar(bar_x, game_count, fc='silver', width=width, label='GTOA', ec='k')
 for i in range(len(bar_x)):
     bar_x[i] = bar_x[i] + width
 plt.bar(bar_x, random_count, fc='grey', width=width, label='Random', ec='k')
